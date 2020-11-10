@@ -97,15 +97,17 @@ class TodoAddForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: TextField(
-          decoration: InputDecoration(
-            hintText: "タイトル",
-            hintStyle: TextStyle(
-              fontWeight: FontWeight.bold,
+      body: Column(
+        children: <Widget>[
+          TextField(
+            decoration: InputDecoration(
+              hintText: "タイトル",
+              hintStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
