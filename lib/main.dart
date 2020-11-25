@@ -34,16 +34,8 @@ class ToDoListPage extends StatefulWidget {
   _ToDoListPageState createState() => _ToDoListPageState();
 }
 
-List<bool> todoListCheck = [
-  false,
-  false,
-  false,
-];
-List<String> todoList = [
-  "SAMPLE",
-  "SAMPLE",
-  "SAMPLESAMPLESAMPLESAMPLESAMPLESAMPLESAMPLESAMPLESAMPLESAMPLESAMPLESAMPLESAMPLESAMPLE",
-];
+List<bool> todoListCheck = [];
+List<String> todoList = [];
 
 class _ToDoListPageState extends State<ToDoListPage> {
   @override
@@ -54,12 +46,6 @@ class _ToDoListPageState extends State<ToDoListPage> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
-        // actions: <Widget>[
-        //   IconButton(
-        //     icon: Icon(Icons.notifications_outlined),
-        //     onPressed: () {},
-        //   ),
-        // ],
       ),
       floatingActionButton: Container(
         decoration: BoxDecoration(
@@ -220,13 +206,19 @@ class _TodoListAddPageState extends State<TodoListAddPage> {
         elevation: 0.0,
         brightness: Brightness.light,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.check),
-            color: Color(0xff68B941),
-            onPressed: () {
-              todoListCheck.add(false);
-              Navigator.of(context).pop(taskTitle);
-            },
+          AnimatedOpacity(
+            opacity: taskTitle.length != 0 ? 1 : 0,
+            duration: Duration(milliseconds: 200),
+            child: IconButton(
+              icon: Icon(Icons.check),
+              color: taskTitle.length != 0 ? Color(0xff68B941) : Color(0xffcccccc),
+              onPressed: () {
+                if (taskTitle.length != 0) {
+                  todoListCheck.add(false);
+                  Navigator.of(context).pop(taskTitle);
+                }
+              },
+            ),
           ),
         ],
         leading: Builder(
